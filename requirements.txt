@@ -1,14 +1,6 @@
-# Core Python utilities
 numpy
 pandas
-scipy
-joblib
-python-dateutil
-pytz
-
-# Machine Learning
 scikit-learn
+joblib
 imbalanced-learn
-
-# Streamlit app
 streamlit
