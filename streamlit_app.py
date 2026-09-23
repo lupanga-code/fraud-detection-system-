@@ -33,30 +33,23 @@ merchant_encoded = merchant_map.get(merchant, 0)
 location_encoded = location_map.get(location, 0)
 channel_encoded = channel_map.get(channel, 0)
 
-# Build full feature set
-input_data = pd.DataFrame([[
-    amount,
-    merchant_encoded,
-    location_encoded,
-    channel_encoded,
-    hour,
-    unusual_hour,
-    txn_count_per_minute,
-    int(multi_account_flag),
-    int(location_mismatch),
-    int(channel_switch)
-]], columns=[
-    "Amount",
-    "Merchant",
-    "Location",
-    "Channel",
-    "Hour",
-    "UnusualHour",
-    "TxnCountPerMinute",
-    "MultiAccountFlag",
-    "LocationMismatch",
-    "ChannelSwitch"
-])
+# Build dictionary of all features
+features_dict = {
+    "Amount": amount,
+    "Merchant": merchant_encoded,
+    "Location": location_encoded,
+    "Channel": channel_encoded,
+    "Hour": hour,
+    "UnusualHour": unusual_hour,
+    "TxnCountPerMinute": txn_count_per_minute,
+    "MultiAccountFlag": int(multi_account_flag),
+    "LocationMismatch": int(location_mismatch),
+    "ChannelSwitch": int(channel_switch)
+}
+
+# Align with model.feature_names_in_
+input_data = pd.DataFrame([[features_dict.get(f, 0) for f in model.feature_names_in_]],
+                          columns=model.feature_names_in_)
 
 # Predict button
 if st.button("Predict Fraud"):
