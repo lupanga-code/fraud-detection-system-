@@ -3,7 +3,8 @@ import pandas as pd
 import joblib
 
 # Load trained model
-model = joblib.load("models/fraud_detection_model.pkl")
+model = joblib.load("fraud_detection_model_smote.pkl")
+
 
 st.title("💳 Fraud Detection System")
 st.write("Enter transaction details below to check if it's fraudulent.")
