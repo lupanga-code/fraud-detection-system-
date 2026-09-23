@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.env/
+
+# Models
+models/*.pkl
+
+# Data (weka tu kama hutaki kupandisha dataset kubwa)
+data/*.csv
