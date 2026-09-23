@@ -53,8 +53,10 @@ input_data = pd.DataFrame([[features_dict.get(f, 0) for f in model.feature_names
 
 # Predict button
 if st.button("Predict Fraud"):
+    proba = model.predict_proba(input_data)[0][1]  # probability of fraud
     prediction = model.predict(input_data)[0]
+
     if prediction == 1:
-        st.error("⚠️ Fraudulent Transaction Detected!")
+        st.error(f"⚠️ Fraudulent Transaction Detected! (Probability: {proba:.2f})")
     else:
-        st.success("✅ Transaction is Legitimate.")
+        st.success(f"✅ Transaction is Legitimate. (Probability: {proba:.2f})")
